@@ -29,7 +29,8 @@ class purchase_order(orm.Model):
     _inherit = "purchase.order"
 
     def _prepare_order_line_move(self, cr, uid, order, order_line, picking_id, context=None):
-        res = super(purchase_order, self)._prepare_order_line_move(cr, uid, order, order_line, picking_id, context=context)
+    def _prepare_order_line_move(self, cr, uid, order, order_line, picking_id, group_id, context=None):
+        res = super(purchase_order, self)._prepare_order_line_move(cr, uid, order, order_line, picking_id, group_id, context=context)
         if order_line.account_analytic_id:
             res['account_analytic_id'] = order_line.account_analytic_id.id
         return res
